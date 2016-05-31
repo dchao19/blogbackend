@@ -46,7 +46,9 @@ router.post('/auth/register', function(req, res) {
     Account.register(new Account({username: req.body.username, userType: 'regular'}), req.body.password, function(err, account) {
         if (err) {
             res.status(400).json({success: false, errMessage: err});
-        } else if (!account) {
+        } else if (account) {
+            res.json({succes: true, message: "Successfully created the account!"});
+        } else {
             res.status(500).json({success: false, errMessage: 'This account wasn\'t created for some reason'});
         }
     });
