@@ -7,7 +7,7 @@ var Post = require('../models/Post');
 var Comment = require('../models/Comment');
 
 router.get('/', function(req, res) {
-    res.json({message: "blog ready to go!"});
+    res.json({message: 'blog ready to go!'});
 });
 
 router.get('/posts', function(req, res) {
@@ -43,7 +43,7 @@ router.post('/posts/:id/comment', function(req, res) {
 });
 
 router.post('/auth/register', function(req, res) {
-    Account.register(new Account({username: req.body.username, userType: "regular"}), req.body.password, function(err, account) {
+    Account.register(new Account({username: req.body.username, userType: 'regular'}), req.body.password, function(err, account) {
         if (err) {
             res.status(400).json({success: false, errMessage: err});
         } else if (!account) {
@@ -62,7 +62,7 @@ router.get('/auth/testAuth', function(req, res) {
 });
 
 router.post('/posts/new', function(req, res) {
-    if (req.user.userType === "admin") {
+    if (req.user.userType === 'admin') {
         Post.create({
             content: req.body.content,
             title: req.body.title,
