@@ -8,7 +8,12 @@ var Account = require('./models/Account');
 var routes = require('./routes/index');
 var blogRoutes = require('./routes/blog');
 
-mongoose.connect('mongodb://localhost/blog');
+var dbUser = process.env.DCHAO_BLOG_DB_USERNAME;
+var dbPassword = process.env.DCHAO_BLOG_DB_PASSWORD;
+
+var connectionUrl = 'mongodb://' + dbUser + ':' + dbPassword + '@ds019633.mlab.com:19633/heroku_611qwx4p';
+
+mongoose.connect(connectionUrl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function() {
