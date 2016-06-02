@@ -80,7 +80,8 @@ router.post('/posts/new', function(req, res) {
         Post.create({
             content: req.body.content,
             title: req.body.title,
-            tags: req.body.tags
+            tags: req.body.tags,
+            markdown: req.body.markdown
         }, function(err, post) {
             if (err) {
                 res.status(400).json({success: false, errMessage: err});
