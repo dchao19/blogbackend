@@ -22,6 +22,18 @@ router.get('/posts', function(req, res) {
     });
 });
 
+router.get('/posts/:id', function(req, res) {
+    Post.findOne({_id: req.params.id}, function(err, post) {
+        if (err) {
+            res.status(400).json({success: false, errMessage: err});
+        } else if (post) {
+            res.json({success: true, result: post});
+        } else {
+            res.status(400).json({success: false, errMessage: 'That post ID wasn\'t found!'});
+        }
+    });
+});
+
 router.post('/posts/:id/comment', function(req, res) {
     Post.findOne({_id: req.params.id}, function(err, post) {
         if (err) {
