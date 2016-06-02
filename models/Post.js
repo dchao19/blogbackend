@@ -7,7 +7,8 @@ var Post = new Schema({
     content: String,
     title: String,
     comments: [Comment.schema],
-    tags: [String]
+    tags: [String],
+    markdown: String
 });
 
 Post.plugin(timestamps);
